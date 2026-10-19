@@ -125,3 +125,4 @@ th{background:var(--gl);color:var(--g);font-weight:600}.fin th{background:var(--
 @media print{.yrc .pr-panel .no-print,.yrc .pr-btns,.yrc .pr-btn{display:none!important}.yrc .pr-panel{padding-top:4px;margin-top:4px}
 .yrc .pr-print{display:block;font-size:12px}.yrc .pr-print.pr-P{color:#12703f}.yrc .pr-print.pr-N{color:#b3261e}.yrc .pr-print span{font-weight:700;font-size:10px;letter-spacing:.05em;margin-left:4px}
 .yrc .pr-panel:not(:has(.pr-print)){display:none}}
+@media print{.yrc .pr-print,.yrc .pr-print.pr-P,.yrc .pr-print.pr-N{border:0!important;outline:0!important;background:none!important;padding:0!important;border-radius:0!important;box-shadow:none!important}}
