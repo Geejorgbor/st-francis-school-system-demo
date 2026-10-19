@@ -131,3 +131,4 @@ th{background:var(--gl);color:var(--g);font-weight:600}.fin th{background:var(--
 @media print{.yrc .pr-links{display:none!important}}
 .yrc .pr-return{margin-left:10px;font:600 12px Inter,system-ui,sans-serif;color:#0f3d2e;background:#fff;border:1px solid #9aa8a2;border-radius:6px;padding:3px 10px;cursor:pointer;vertical-align:middle}.yrc .pr-return:hover{background:#eef3f0}
 @media print{.yrc .pr-return{display:none!important}}
+.badge{display:inline-block;min-width:20px;padding:0 6px;border-radius:10px;background:#b3261e;color:#fff;font-size:.72rem;font-weight:700;text-align:center;line-height:18px;margin-left:4px}
