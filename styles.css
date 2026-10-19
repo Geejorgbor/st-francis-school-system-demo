@@ -94,3 +94,13 @@ th{background:var(--gl);color:var(--g);font-weight:600}.fin th{background:var(--
 .yrc td.avg{background:#eef3f0}.yrc tr.tot td{background:#e2ebe6}
 .yrc .det{grid-template-columns:repeat(4,1fr)}
 @media(max-width:700px){.yrc .det{grid-template-columns:1fr 1fr}}
+/* polish layer (same layout as Fruit of Faith reference) */
+.yrc{font-feature-settings:"tnum";-webkit-font-smoothing:antialiased}
+.yrc:before{border-width:2.5px;outline-color:#9aa8a2}
+.yrc .rc-head h1{font-weight:700;letter-spacing:.04em}.yrc .rc-head{border-bottom-width:4px}
+.yrc .rc-title{box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);letter-spacing:.22em}
+.yrc table{border:1.5px solid #0f3d2e}.yrc th{border-color:#0f3d2e;border-bottom:1.5px solid #0f3d2e}
+.yrc td{border-color:#d3ddd8}.yrc tbody tr:nth-child(even) td:not(.avg),.yrc tr:nth-child(even) td:not(.avg){background:#fafcfb}
+.yrc .sec{border-bottom:1px solid #d3ddd8;padding-bottom:3px}
+.yrc .box,.yrc .rem{border-color:#c6d2cc;border-radius:6px}.yrc .box table{border-width:1px}
+.yrc .sig .ln{border-top-color:#0f3d2e;font-weight:600;color:#0f3d2e}
