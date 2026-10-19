@@ -48,7 +48,7 @@ th{background:var(--gl);color:var(--g);font-weight:600}.fin th{background:var(--
 .idc .b{display:flex;gap:.6rem;padding:.6rem;font-size:.8rem}.ph{width:70px;height:85px;background:#e3e9e6;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--mu);font-size:.7rem}
 .chart{width:100%;height:auto}
 @media print{.no-print,.top,nav.side,#asstBtn,#asst,.foot{display:none!important}main{padding:0}.card{border:0}body{background:#fff}}
-/* ===== Annual report card – styled after the Fruit of Faith "Student Progress Report" (foff-demo/styles.css .rc*) in St. Francis green + gold ===== */
+/* ===== Annual report card – styled after the Fruit of Faith "Student Progress Report" (foff-demo/styles.css .rc*) in St. Francis green/white ===== */
 .yrc{--b:#0f3d2e;--gd:#e6c800;--gd2:#F5E50A;--ln:#cfdcd5;position:relative;overflow:hidden;background:#fff;max-width:1000px;margin:auto;padding:34px 38px;border:1px solid #dfe5e2;border-radius:6px;box-shadow:0 10px 30px -12px rgba(15,61,46,.25);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#1a2420;font-size:12.5px;line-height:1.4}
 .yrc:before{content:"";position:absolute;inset:12px;border:2px solid var(--b);outline:1px solid var(--gd);outline-offset:-6px;pointer-events:none;border-radius:2px}
 .yrc>*{position:relative;z-index:1}
@@ -87,3 +87,10 @@ th{background:var(--gl);color:var(--g);font-weight:600}.fin th{background:var(--
 .yrc .rem{min-height:32px;padding:5px 8px}.yrc .sig{margin-top:14px}.yrc .stamp{flex-basis:70px!important;height:70px}.yrc .key{font-size:9.2px}.yrc .rc-foot{margin-top:6px;font-size:9px}
 .yrc .sec,.yrc .box,.yrc .two,.yrc .sig,.yrc tr{break-inside:avoid;page-break-inside:avoid}}
 @media print{.toast{display:none!important}}
+/* St. Francis colours only (green/white/greys) – replaces Fruit of Faith gold accents */
+.yrc{--gd:#9aa8a2;--gd2:#ffffff}
+.yrc .rc-title{color:#fff}.yrc .rc-motto{color:#2f4a40!important}
+.yrc th.sem{background:#2f5e4c;color:#fff}
+.yrc td.avg{background:#eef3f0}.yrc tr.tot td{background:#e2ebe6}
+.yrc .det{grid-template-columns:repeat(4,1fr)}
+@media(max-width:700px){.yrc .det{grid-template-columns:1fr 1fr}}
