@@ -94,3 +94,35 @@ th{background:var(--gl);color:var(--g);font-weight:600}.fin th{background:var(--
 .yrc .sec{font-size:12.5px;margin:8px 0 4px}.yrc table{font-size:9.5px}.yrc th,.yrc td{padding:2px 3px}.yrc .det div{padding:1px 0}.yrc .box{padding:5px 8px}.yrc .big{font-size:20px}
 .yrc .rem{min-height:38px;padding:5px}.yrc .sig{margin-top:12px}.yrc .sig .ln{margin-top:26px}.yrc .stamp{height:70px}.yrc .key{font-size:9.5px}}
 @media print{.toast{display:none!important}}
+/* ===== Annual report card: navy & gold refinement (report card only) ===== */
+.yrc{--nv:#14213d;--gd:#b8933a;--gdl:#e9dcc0;--zb:#f6f4ee;--fr:#a3423a;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#22262e;line-height:1.5;border:1px solid var(--gd);outline:3px solid var(--nv);outline-offset:6px;padding:40px 44px;margin:14px auto}
+.yrc::before{content:"";position:absolute;inset:8px;border:1px solid var(--gd);pointer-events:none}
+.yrc>*{position:relative;z-index:1}.yrc .crest{position:absolute;z-index:0;left:50%;top:50%;width:62%;transform:translate(-50%,-45%);opacity:.06;pointer-events:none}
+.yrc .wm{z-index:0;color:var(--nv);opacity:.04}
+.yrc h1,.yrc .ttl,.yrc .sec,.yrc .serif,.yrc .big{font-family:"Cormorant Garamond","Playfair Display",Georgia,"Times New Roman",Times,serif}
+.yrc .yh img{width:112px}.yrc .yh h1{color:var(--nv);font-size:30px;font-weight:700;letter-spacing:.1em;margin-top:6px}
+.yrc .yh .mot{color:var(--gd);font-size:13px;letter-spacing:.3em}.yrc .yh .adr{color:#5a5f6b;letter-spacing:.03em}
+.yrc .rule{border-top:1px solid var(--gd);border-bottom:1px solid var(--gd);height:4px;margin:14px 12% 0}
+.yrc .ttl{color:var(--nv);font-size:20px;font-weight:600;letter-spacing:.08em;margin:10px 0 4px}
+.yrc .sec{color:var(--nv);font-size:16px;font-weight:700;border-bottom:.5px solid var(--gd);padding-bottom:3px;margin:20px 0 10px}
+.yrc .det{gap:6px 18px}.yrc .det div{border-bottom:.5px solid var(--gdl);padding:3px 0}.yrc .det b{color:var(--nv)}
+.yrc th{background:var(--nv);color:#fff;border:0;border-bottom:2px solid var(--gd);font-weight:600;letter-spacing:.02em;padding:5px 5px}
+.yrc td{border:0;border-bottom:.5px solid #e2ddd0;padding:4px 5px}.yrc tr:nth-child(even) td{background:var(--zb)}
+.yrc td.l:first-child{font-weight:600;color:var(--nv)}
+.yrc td.avg{background:#efe7d4!important;color:var(--nv);font-weight:700}
+.yrc tr.tot td{background:#ece4cf!important;color:var(--nv);border-top:1.5px solid var(--gd);border-bottom:1.5px solid var(--gd)}
+.yrc .fail{color:var(--fr);font-weight:600}.yrc .up{color:#3d6b4f}.yrc .dn{color:var(--fr)}
+.yrc .box{background:rgba(246,244,238,.85);border:.5px solid var(--gdl);border-top:2px solid var(--gd);border-left:.5px solid var(--gdl);border-radius:2px;padding:10px 12px}
+.yrc .box table th{background:transparent;color:var(--nv);border-bottom:1px solid var(--gd)}
+.yrc .kv{border-bottom:.5px solid var(--gdl);padding:4px 0}.yrc .kv b{color:var(--nv)}.yrc .big{color:var(--nv);font-size:34px}
+.yrc .rem{border:.5px solid var(--gd);border-radius:2px;background:rgba(255,255,255,.8);min-height:62px;padding:9px 11px;font-style:italic}
+.yrc .two{gap:22px}.yrc .sig{gap:22px;margin-top:30px}.yrc .sig .ln{border-top:.75px solid var(--nv);margin-top:42px;font-family:Georgia,"Times New Roman",serif;color:var(--nv);letter-spacing:.04em}
+.yrc .stamp{border:1px solid var(--gd)!important;outline:1px solid var(--gd);outline-offset:3px;color:var(--gd);border-radius:50%;font-size:11px;letter-spacing:.12em}
+.yrc .key{color:#5a5f6b}
+@media print{@page{size:A4;margin:9mm}.yrc{font-size:10px;line-height:1.38;padding:22px 26px;outline-offset:4px;margin:4px}
+.yrc .yh img{width:76px}.yrc .yh h1{font-size:22px;margin-top:2px}.yrc .rule{margin-top:8px}.yrc .ttl{font-size:15px;margin:6px 0 0}
+.yrc .sec{font-size:12.5px;margin:9px 0 5px}.yrc table{font-size:9.2px}.yrc th{padding:3px 4px}.yrc td{padding:2px 4px}
+.yrc .box{padding:6px 9px}.yrc .big{font-size:24px}.yrc .rem{min-height:36px;padding:5px 8px}.yrc .two{gap:16px}
+.yrc .sig{margin-top:12px}.yrc .sig .ln{margin-top:26px}.yrc .stamp{height:68px}.yrc .key{font-size:9px}.yrc .crest{position:absolute}}
+.yrc .sig>div{border-top:0;padding-top:0}.yrc .kv b{text-align:right;max-width:60%}
+@media print{.yrc{padding:18px 24px;line-height:1.32}.yrc .sec{margin:7px 0 4px}.yrc .det div{padding:1px 0}.yrc .rem{min-height:30px}.yrc .sig{margin-top:8px}.yrc .sig .ln{margin-top:22px}.yrc .stamp{height:60px}.yrc .yh img{width:72px}}

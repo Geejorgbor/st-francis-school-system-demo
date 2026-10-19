@@ -402,7 +402,7 @@ PAGES.reportcard=m=>{S.rcComments=S.rcComments||{};S.rcRemarks=S.rcRemarks||{};
   const sem2partial=y.rows.some(r=>r.g.e2==null);const ov=ovr(s),[gl,gr]=band(ov);
   const n=v=>typeof v==='number'?(Number.isInteger(v)?v:v.toFixed(1)):'–';const c=v=>`<td class="n ${v!=null&&v<PASS?'fail':''}">${n(v)}</td>`;const ca=v=>`<td class="n avg ${v!=null&&v<PASS?'fail':''}">${n(v)}</td>`;
   const sponsor=S.teachers.find(t=>t.homeroom===s.cls);const par=S.parents.find(p=>p.id===s.parent);
-  $('#rc').innerHTML=`<div class="yrc">${RCWM?'<div class="wm">OFFICIAL</div>':''}
+  $('#rc').innerHTML=`<div class="yrc"><img class="crest" src="logo.png" alt="">${RCWM?'<div class="wm">OFFICIAL</div>':''}
   <div class="yh"><img src="logo-sm.png" alt="School logo"><h1>${SCHOOL.name}</h1><div class="mot">${SCHOOL.motto}</div><div class="adr">${SCHOOL.addr} · ${SCHOOL.levels}</div></div><div class="rule"></div>
   <div class="ttl" style="text-align:center">Annual Report Card – Academic Year 2026/2027</div>
   <div class="sec">Student details</div><div class="det"><div><b>Name:</b> ${esc(s.name)}</div><div><b>Student ID:</b> ${s.id}</div><div><b>Class:</b> ${s.cls}</div><div><b>Gender:</b> ${s.gender}</div><div><b>Date of birth:</b> ${s.dob||'–'}</div><div><b>Class sponsor:</b> ${sponsor?esc(sponsor.name):'–'}</div><div><b>Parent/Guardian:</b> ${esc(par?par.name:'–')}</div><div><b>School day:</b> ${isLower(s.cls)?'7:30am – 4:30pm':'7:30am – 2:45pm'}</div><div><b>Issued:</b> ${today()}</div></div>
