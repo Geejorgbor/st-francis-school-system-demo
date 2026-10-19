@@ -398,7 +398,7 @@ function canSubjComment(s,sub){if(ADM())return true;if(ME.role!=='teacher')retur
 const canSponsor=s=>ADM()||(ME.role==='teacher'&&teacher().homeroom===s.cls);
 let RCWM=true;
 PAGES.reportcard=m=>{S.rcComments=S.rcComments||{};S.rcRemarks=S.rcRemarks||{};
- m.innerHTML=`<h2 class="no-print">Yearly Report Card</h2><div class="card no-print"><div class="row"><div><label>Student</label>${studentPicker()}</div><label style="color:var(--tx);flex:0 0 auto"><input type="checkbox" id="wm" style="width:auto" ${RCWM?'checked':''}> "OFFICIAL" watermark</label><button class="btn" onclick="print()">Print (A4/Letter)</button></div></div><div id="rc"></div><div id="rcedit" class="no-print"></div>`;
+ const closeTo=ME.role==='proprietor'?'#students':ME.role==='teacher'?'#classes':'#dashboard';m.innerHTML=`<div class="rcnav no-print"><button class="btn o s" id="rcBack">← Back</button><a class="btn o s" href="#dashboard">⌂ Home</a><a class="btn o s" href="${closeTo}">✕ Close / Back to student list</a></div><h2 class="no-print">Yearly Report Card</h2><div class="card no-print"><div class="row"><div><label>Student</label>${studentPicker()}</div><label style="color:var(--tx);flex:0 0 auto"><input type="checkbox" id="wm" style="width:auto" ${RCWM?'checked':''}> "OFFICIAL" watermark</label><button class="btn" onclick="print()">Print (A4/Letter)</button></div></div><div id="rc"></div><div id="rcedit" class="no-print"></div>`;
  const d=()=>{const s=stu($('#sp').value);if(!s){$('#rc').innerHTML='<div class="card">No students.</div>';$('#rcedit').innerHTML='';return}
   const y=yearly(s),a=attSum(s.id),C=S.rcComments[s.id]||{},R=S.rcRemarks[s.id]||{};
   const cl=S.students.filter(x=>x.cls===s.cls).map(x=>[x.id,ovr(x)]).filter(x=>x[1]!=null).sort((p,q)=>q[1]-p[1]);const rank=cl.findIndex(x=>x[0]===s.id)+1;
@@ -427,7 +427,7 @@ PAGES.reportcard=m=>{S.rcComments=S.rcComments||{};S.rcRemarks=S.rcRemarks||{};
   if(eh)eh+=`<button class="btn" id="rcsave">Save report card comments</button>`;
   $('#rcedit').innerHTML=eh;
   if(eh)$('#rcsave').onclick=()=>{const cc=S.rcComments[s.id]=S.rcComments[s.id]||{};m.querySelectorAll('[data-cm]').forEach(i=>{if(canSubjComment(s,i.dataset.cm))cc[i.dataset.cm]=i.value.trim()});const rr=S.rcRemarks[s.id]=S.rcRemarks[s.id]||{};if($('#rsp')&&canSponsor(s))rr.sponsor=$('#rsp').value.trim();if($('#rpr')&&ADM())rr.principal=$('#rpr').value.trim();audit('Updated yearly report card comments for '+s.id);toast('Comments saved');d()}};
- $('#sp').onchange=d;$('#wm').onchange=e=>{RCWM=e.target.checked;d()};RCD=d;d()};
+ $('#rcBack').onclick=()=>{if(history.length>1)history.back();else location.hash='#dashboard'};$('#sp').onchange=d;$('#wm').onchange=e=>{RCWM=e.target.checked;d()};RCD=d;d()};
 /* ---------- manual promotion decision ---------- */
 const AYEAR='2026/2027';let RCD=null;
 const canPromote=()=>ME&&(ME.role==='proprietor'||ME.role==='accountant');
