@@ -438,6 +438,5 @@ document.addEventListener('click',e=>{const c=e.target.closest('[data-prc],[data
  if(c&&c.dataset.prc){RCCHG=s.id;RCD&&RCD();return}
  if(c&&c.dataset.prx){delete S.promo[key];RCCHG=null;audit(`Cleared promotion decision for ${s.id} (${AYEAR})`);save();RCD&&RCD();return}
  const v=b.dataset.pr;S.promo[key]={v,by:ME.u+' ('+ROLE_LABEL[ME.role]+')',at:new Date().toLocaleString()};RCCHG=null;audit(`Set promotion decision for ${s.id} ${s.name} (${AYEAR}): ${v==='P'?'PROMOTED'+(nextClass(s.cls)?' to '+nextClass(s.cls):' / GRADUATED'):'NOT PROMOTED – repeat '+s.cls}`);save();RCD&&RCD()});
- if(cur&&cur.v===v){delete S.promo[key];audit(`Cleared promotion decision for ${s.id} (${AYEAR})`)}else{S.promo[key]={v,by:ME.u+' ('+ROLE_LABEL[ME.role]+')',at:new Date().toLocaleString()};audit(`Set promotion decision for ${s.id} ${s.name} (${AYEAR}): ${v==='P'?'PROMOTED'+(nextClass(s.cls)?' to '+nextClass(s.cls):' / GRADUATED'):'NOT PROMOTED – repeat '+s.cls}`)}save();RCD&&RCD()});
 if('serviceWorker'in navigator){let rl=false;const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!rl){rl=true;location.reload()}});window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{}))}
 render();
