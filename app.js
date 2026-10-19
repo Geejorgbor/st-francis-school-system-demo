@@ -427,11 +427,17 @@ PAGES.reportcard=m=>{S.rcComments=S.rcComments||{};S.rcRemarks=S.rcRemarks||{};
 const AYEAR='2026/2027';let RCD=null;
 const canPromote=()=>ME&&(ME.role==='proprietor'||ME.role==='accountant');
 function nextClass(c){const i=CLASSES.indexOf(c);return i>=CLASSES.length-1?null:CLASSES[i+1]}
-function promoPanel(s){S.promo=S.promo||{};const d=S.promo[s.id+'|'+AYEAR],v=d&&d.v,nx=nextClass(s.cls),ed=canPromote();
+let RCCHG=null;
+function promoPanel(s){S.promo=S.promo||{};const d=S.promo[s.id+'|'+AYEAR],v=d&&d.v,nx=nextClass(s.cls),ed=canPromote(),chg=ed&&v&&RCCHG===s.id;
  const help={P:nx?'TO '+nx.toUpperCase():'GRADUATED',N:'REPEAT '+s.cls.toUpperCase()};const lab={P:'PROMOTED',N:'NOT PROMOTED'};
- const btn=k=>`<${ed?'button type="button"':'span'} class="pr-btn pr-${k} ${v===k?'on':''}" ${ed?`data-pr="${k}" aria-pressed="${v===k}"`:''}>${v===k?'✓ ':''}${lab[k]}${v===k?`<small>${help[k]}</small>`:''}</${ed?'button':'span'}>`;
- return `<div class="pr-panel"><div class="pr-lab no-print">Promotion decision</div><div class="pr-btns no-print">${btn('P')}${btn('N')}</div><div class="pr-by no-print">${d?`Set by ${esc(d.by)} · ${esc(d.at)}${ed?' · click again to clear':''}`:(ed?'Tap PROMOTED or NOT PROMOTED to record the decision':'Not yet decided')}</div>${v?`<div class="pr-print pr-${v}"><b>${lab[v]}</b> <span>${help[v]}</span></div>`:''}</div>`}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-pr]');if(!b||!canPromote())return;const sid=$('#sp')&&$('#sp').value;const s=stu(sid);if(!s)return;S.promo=S.promo||{};const key=s.id+'|'+AYEAR,cur=S.promo[key];const v=b.dataset.pr;
+ const btn=k=>`<button type="button" class="pr-btn pr-${k}" data-pr="${k}">${lab[k]}</button>`;
+ const status=v?`<div class="pr-print ${chg?'':'pr-status'} pr-${v}"><b>${lab[v]}</b> <span>${v==='N'?', ':''}${help[v]}</span>${ed&&!chg?` <span class="pr-links no-print"><a href="#" data-prc="1">Change</a> · <a href="#" data-prx="1">Clear</a></span>`:''}</div>`:'';
+ const showBtns=ed&&(!v||chg);
+ return `<div class="pr-panel"><div class="pr-lab no-print">Promotion decision</div>${status}${showBtns?`<div class="pr-btns no-print">${btn('P')}${btn('N')}</div>`:''}<div class="pr-by no-print">${d?`Set by ${esc(d.by)} · ${esc(d.at)}${chg?' · choose a new decision':''}`:(ed?'Tap PROMOTED or NOT PROMOTED to record the decision':'Not yet decided')}</div></div>`}
+document.addEventListener('click',e=>{const c=e.target.closest('[data-prc],[data-prx]');const b=e.target.closest('[data-pr]');if((!b&&!c)||!canPromote())return;e.preventDefault();const s=stu($('#sp')&&$('#sp').value);if(!s)return;S.promo=S.promo||{};const key=s.id+'|'+AYEAR;
+ if(c&&c.dataset.prc){RCCHG=s.id;RCD&&RCD();return}
+ if(c&&c.dataset.prx){delete S.promo[key];RCCHG=null;audit(`Cleared promotion decision for ${s.id} (${AYEAR})`);save();RCD&&RCD();return}
+ const v=b.dataset.pr;S.promo[key]={v,by:ME.u+' ('+ROLE_LABEL[ME.role]+')',at:new Date().toLocaleString()};RCCHG=null;audit(`Set promotion decision for ${s.id} ${s.name} (${AYEAR}): ${v==='P'?'PROMOTED'+(nextClass(s.cls)?' to '+nextClass(s.cls):' / GRADUATED'):'NOT PROMOTED – repeat '+s.cls}`);save();RCD&&RCD()});
  if(cur&&cur.v===v){delete S.promo[key];audit(`Cleared promotion decision for ${s.id} (${AYEAR})`)}else{S.promo[key]={v,by:ME.u+' ('+ROLE_LABEL[ME.role]+')',at:new Date().toLocaleString()};audit(`Set promotion decision for ${s.id} ${s.name} (${AYEAR}): ${v==='P'?'PROMOTED'+(nextClass(s.cls)?' to '+nextClass(s.cls):' / GRADUATED'):'NOT PROMOTED – repeat '+s.cls}`)}save();RCD&&RCD()});
 if('serviceWorker'in navigator){let rl=false;const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!rl){rl=true;location.reload()}});window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{}))}
 render();
