@@ -431,12 +431,12 @@ let RCCHG=null;
 function promoPanel(s){S.promo=S.promo||{};const d=S.promo[s.id+'|'+AYEAR],v=d&&d.v,nx=nextClass(s.cls),ed=canPromote(),chg=ed&&v&&RCCHG===s.id;
  const help={P:nx?'TO '+nx.toUpperCase():'GRADUATED',N:'REPEAT '+s.cls.toUpperCase()};const lab={P:'PROMOTED',N:'NOT PROMOTED'};
  const btn=k=>`<button type="button" class="pr-btn pr-${k}" data-pr="${k}">${lab[k]}</button>`;
- const status=v?`<div class="pr-print ${chg?'':'pr-status'} pr-${v}"><b>${lab[v]}</b> <span>${v==='N'?', ':''}${help[v]}</span>${ed&&!chg?` <span class="pr-links no-print"><a href="#" data-prc="1">Change</a> · <a href="#" data-prx="1">Clear</a></span>`:''}</div>`:'';
+ const status=v?`<div class="pr-print ${chg?'':'pr-status'} pr-${v}"><b>${lab[v]}</b> <span>${v==='N'?', ':''}${help[v]}</span>${ed&&!chg?` <button type="button" class="pr-return no-print" data-prx="1">Return</button>`:''}</div>`:'';
  const showBtns=ed&&(!v||chg);
  return `<div class="pr-panel"><div class="pr-lab no-print">Promotion decision</div>${status}${showBtns?`<div class="pr-btns no-print">${btn('P')}${btn('N')}</div>`:''}<div class="pr-by no-print">${d?`Set by ${esc(d.by)} · ${esc(d.at)}${chg?' · choose a new decision':''}`:(ed?'Tap PROMOTED or NOT PROMOTED to record the decision':'Not yet decided')}</div></div>`}
 document.addEventListener('click',e=>{const c=e.target.closest('[data-prc],[data-prx]');const b=e.target.closest('[data-pr]');if((!b&&!c)||!canPromote())return;e.preventDefault();const s=stu($('#sp')&&$('#sp').value);if(!s)return;S.promo=S.promo||{};const key=s.id+'|'+AYEAR;
  if(c&&c.dataset.prc){RCCHG=s.id;RCD&&RCD();return}
- if(c&&c.dataset.prx){delete S.promo[key];RCCHG=null;audit(`Cleared promotion decision for ${s.id} (${AYEAR})`);save();RCD&&RCD();return}
+ if(c&&c.dataset.prx){delete S.promo[key];RCCHG=null;audit(`Returned (erased) promotion decision for ${s.id} (${AYEAR})`);save();RCD&&RCD();return}
  const v=b.dataset.pr;S.promo[key]={v,by:ME.u+' ('+ROLE_LABEL[ME.role]+')',at:new Date().toLocaleString()};RCCHG=null;audit(`Set promotion decision for ${s.id} ${s.name} (${AYEAR}): ${v==='P'?'PROMOTED'+(nextClass(s.cls)?' to '+nextClass(s.cls):' / GRADUATED'):'NOT PROMOTED – repeat '+s.cls}`);save();RCD&&RCD()});
 if('serviceWorker'in navigator){let rl=false;const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!rl){rl=true;location.reload()}});window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{}))}
 render();
